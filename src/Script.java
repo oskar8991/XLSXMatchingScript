@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 // goes into xlsx 1 and check for key cell in first row, then extracts wanted cells
 // cycles through all key cells in xlsx 2 looking for same String (label), then extracts wanted cells
-// combines the key cell and wanted cells into a new xlsv document as output
+// combines the key cell and wanted cells into a new xlsx document as output
 
 
 public class Script {
@@ -25,17 +25,17 @@ public class Script {
 		
 		int rowCounter3 = 0;
 		
-		// input xlsv file 1
+		// input xlsx file 1
 		XSSFWorkbook workbook1 = new XSSFWorkbook(new FileInputStream("1coordinatesTest.xlsx"));
 		XSSFSheet sheet1 = workbook1.getSheetAt(0);
 		XSSFRow row1 = sheet1.getRow(0);;
 
-		// input xlsv file 2
+		// input xlsx file 2
 		XSSFWorkbook workbook2 = new XSSFWorkbook(new FileInputStream("2valuesTest.xlsx"));
 		XSSFSheet sheet2 = workbook2.getSheetAt(0);
 		XSSFRow row2 = sheet2.getRow(1);
 		
-		// output xlsv file
+		// output xlsx file
 		XSSFWorkbook workbook3 = new XSSFWorkbook();
 		XSSFSheet sheet3 = workbook3.createSheet("sheet");
 		
@@ -66,14 +66,15 @@ public class Script {
 						cellTwo3.setCellValue(currentSecondCellSring1);
 						cellThree3.setCellValue(currentSecondCellString2);
 						workbook3.write(new FileOutputStream("output.xlsx"));
-						//workbook3.close();
 						rowCounter3++;
 					}
 				}
 				
 			}
 			
-		}	
+		}
+		
+		workbook3.close();
 		
 	}
 
